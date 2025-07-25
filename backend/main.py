@@ -6,17 +6,11 @@ import shutil
 import time
 import os
 
-# For text summarization
-from transformers import pipeline
+
 
 app = FastAPI()
 
-# Summarizer model initialization (once, during startup)
-summarizer = pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-12-6",  # ✅ Lighter model
-    device=-1  # ✅ Force CPU (no GPU, avoids mps crash)
-)
+
 
 # AssemblyAI API key (only for audio)
 API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
@@ -112,6 +106,15 @@ async def transcribe(file: UploadFile = File(...)):
             if len(text) > 3000:
                 text = text[:3000]
 
+            #lazy import for transformers
+            # For text summarization
+            from transformers import pipeline
+            # Summarizer model initialization (once, during startup)
+            summarizer = pipeline(
+                "summarization",
+                model="sshleifer/distilbart-cnn-12-6",  # ✅ Lighter model
+                device=-1  # ✅ Force CPU (no GPU, avoids mps crash)
+            )
             summary_output = summarizer(text, max_length=150, min_length=30, do_sample=False)
 
             print("📄 Summary Output:", summary_output)
