@@ -8,9 +8,12 @@ services:
     region: oregon
     rootDir: backend
 
-  - type: static
+  - type: web    # ← changed from "static" to "web"
     name: react-frontend
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: build
+    startCommand: ""  # no start command for static site
+    plan: free
+    region: oregon
     rootDir: ccc
