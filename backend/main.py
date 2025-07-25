@@ -19,7 +19,7 @@ summarizer = pipeline(
 )
 
 # AssemblyAI API key (only for audio)
-API_KEY = 'e272540ccc2c44b78f35347c84350318'
+API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
 headers = {'authorization': API_KEY}
 
 # Enable CORS
