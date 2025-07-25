@@ -15,5 +15,4 @@ services:
     staticPublishPath: build
     startCommand: ""  # no start command for static site
     plan: free
-    region: oregon
     rootDir: ccc
