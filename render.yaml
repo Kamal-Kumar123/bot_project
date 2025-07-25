@@ -1,3 +1,5 @@
+version: "1"
+
 services:
   - type: web
     name: fastapi-backend
@@ -14,6 +16,4 @@ services:
     repo: https://github.com/Kamal-Kumar123/bot_project
     buildCommand: npm install && npm run build
     staticPublishPath: build
-    rootDir: project/frontend/ccc
-
-version: "1"
+    rootDir: frontend
