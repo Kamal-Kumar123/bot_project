@@ -14,5 +14,4 @@ services:
     buildCommand: npm install && npm run build
     staticPublishPath: build
     startCommand: ""  # no start command for static site
-    plan: free
     rootDir: ccc
