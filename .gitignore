@@ -1,0 +1,76 @@
+# =========================
+# PYTHON
+# =========================
+venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# =========================
+# NODE.JS / FRONTEND
+# =========================
+node_modules/
+frontend/node_modules/
+.cache/
+.npm/
+.yarn/
+yarn-error.log
+npm-debug.log
+
+# =========================
+# ENV / SECRETS
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# IDE / SYSTEM FILES
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =========================
+# LOG / TEMP FILES
+# =========================
+*.log
+*.tmp
+*.swp
+*.swo
+
+# =========================
+# LINUX / GIT SPECIFIC
+# =========================
+*.bak
+*.orig
+*.rej
+*.gz
+*.zip
+
+# =========================
+# TEST / COVERAGE
+# =========================
+coverage/
+.coverage
+*.cover
+*.py,cover
+htmlcov/
+
+# =========================
+# LFS BLOCKERS (Prevent large files by mistake)
+# =========================
+*.dylib
+*.pt
+*.h5
+*.ckpt
+*.tflite
