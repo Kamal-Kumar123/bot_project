@@ -142,6 +142,24 @@ async def transcribe(file: UploadFile = File(...)):
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Error during transcription: {str(e)}"}) 
 
+
+
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pathlib import Path
+
+# Serve React frontend
+app.mount("/", StaticFiles(directory="frontend-build", html=True), name="static")
+
+# Handle any unknown frontend route (React Router fallback)
+@app.get("/{full_path:path}")
+async def serve_react_app(full_path: str):
+    index_path = Path("frontend-build/index.html")
+    if index_path.exists():
+        return FileResponse(index_path)
+    return {"error": "index.html not found"}
+
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 10000))  # use Render's PORT env if available
