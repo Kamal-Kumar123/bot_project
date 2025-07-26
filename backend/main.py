@@ -13,8 +13,8 @@
 
 
 # AssemblyAI API key (only for audio)
-API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
-headers = {'authorization': API_KEY}
+#API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
+#headers = {'authorization': API_KEY}
 
 # # Enable CORS
 # app.add_middleware(
@@ -160,52 +160,52 @@ headers = {'authorization': API_KEY}
 #     return {"error": "index.html not found"}
 
 
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
-from pathlib import Path
-import shutil
+# from fastapi import FastAPI, UploadFile, File
+# from fastapi.responses import FileResponse
+# from fastapi.staticfiles import StaticFiles
+# from pathlib import Path
+# import shutil
 
-app = FastAPI()
-
-
-# AssemblyAI API key (only for audio)
-API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
-headers = {'authorization': API_KEY}
+# app = FastAPI()
 
 
-# Serve React frontend
-app.mount("/", StaticFiles(directory="frontend-build", html=True), name="static")
+# # AssemblyAI API key (only for audio)
+# API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
+# headers = {'authorization': API_KEY}
 
-# Handle any unknown frontend route (for React Router fallback)
-@app.get("/{full_path:path}")
-async def serve_react_app(full_path: str):
-    index_path = Path("frontend-build/index.html")
-    if index_path.exists():
-        return FileResponse(index_path)
-    return {"error": "index.html not found"}
 
-# Transcription endpoint
-@app.post("/transcribe")
-async def transcribe(file: UploadFile = File(...)):
-    # Save the uploaded audio file to /tmp (Render-safe path)
-    file_location = f"/tmp/{file.filename}"
-    with open(file_location, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+# # Serve React frontend
+# app.mount("/", StaticFiles(directory="frontend-build", html=True), name="static")
 
-    # TODO: Replace with actual transcription logic later
-    return {
-        "transcript": "This is a dummy transcript.",
-        "summary": [
-            {
-                "headline": "Sample Headline",
-                "summary": "This is a test summary.",
-                "gist": "Main idea here.",
-                "start": "00:00",
-                "end": "00:10"
-            }
-        ]
-    }
+# # Handle any unknown frontend route (for React Router fallback)
+# @app.get("/{full_path:path}")
+# async def serve_react_app(full_path: str):
+#     index_path = Path("frontend-build/index.html")
+#     if index_path.exists():
+#         return FileResponse(index_path)
+#     return {"error": "index.html not found"}
+
+# # Transcription endpoint
+# @app.post("/transcribe")
+# async def transcribe(file: UploadFile = File(...)):
+#     # Save the uploaded audio file to /tmp (Render-safe path)
+#     file_location = f"/tmp/{file.filename}"
+#     with open(file_location, "wb") as buffer:
+#         shutil.copyfileobj(file.file, buffer)
+
+#     # TODO: Replace with actual transcription logic later
+#     return {
+#         "transcript": "This is a dummy transcript.",
+#         "summary": [
+#             {
+#                 "headline": "Sample Headline",
+#                 "summary": "This is a test summary.",
+#                 "gist": "Main idea here.",
+#                 "start": "00:00",
+#                 "end": "00:10"
+#             }
+#         ]
+#     }
 
 if __name__ == "__main__":
     import uvicorn
