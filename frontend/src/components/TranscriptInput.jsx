@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
+const BASE_URL="https://fastapi-backend-vpxy.onrender.com"
 function TranscriptInput() {
   const [file, setFile] = useState(null);
   const [transcript, setTranscript] = useState('');
@@ -25,7 +27,7 @@ function TranscriptInput() {
     setStatus('Uploading & Processing...');
 
     try {
-      const response = await axios.post('http://localhost:8000/transcribe', formData, {
+      const response = await axios.post(`${BASE_URL}/transcribe`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
