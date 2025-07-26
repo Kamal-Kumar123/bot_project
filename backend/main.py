@@ -12,9 +12,9 @@
 
 
 
-# # AssemblyAI API key (only for audio)
-# API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
-# headers = {'authorization': API_KEY}
+# AssemblyAI API key (only for audio)
+API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
+headers = {'authorization': API_KEY}
 
 # # Enable CORS
 # app.add_middleware(
@@ -167,6 +167,12 @@ from pathlib import Path
 import shutil
 
 app = FastAPI()
+
+
+# AssemblyAI API key (only for audio)
+API_KEY = '5d8d89d0b1c74d3c92ab8ce0840e35b8'
+headers = {'authorization': API_KEY}
+
 
 # Serve React frontend
 app.mount("/", StaticFiles(directory="frontend-build", html=True), name="static")
